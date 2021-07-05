@@ -1,1 +1,2 @@
 # otusProject
+Cryptocurrency app
