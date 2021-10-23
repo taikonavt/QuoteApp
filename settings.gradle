@@ -1,0 +1,17 @@
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        jcenter() // Warning: this repository is going to shut down soon
+    }
+}
+rootProject.name = "QuoteApp"
+include ':app'
+include ':core_impl'
+include ':quote_list'
+include ':settings'
+include ':quote_detail'
+include ':network'
+include ':core_api'
+include ':core'

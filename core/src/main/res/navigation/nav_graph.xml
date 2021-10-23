@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/fragmentQuoteList">
+
+    <fragment
+        android:id="@+id/fragmentQuoteList"
+        android:name="com.example.quote_list.QuoteListFragment"
+        android:label="FragmentQuoteList" >
+        <action
+            android:id="@+id/action_fragmentQuoteList_to_fragmentQuoteDetail"
+            app:destination="@id/fragmentQuoteDetail" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentQuoteDetail"
+        android:name="com.example.quote_detail.QuoteDetailFragment"
+        android:label="FragmentQuoteDetail" />
+</navigation>
