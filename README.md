@@ -1,4 +1,4 @@
-# otusProject
+# QuoteApp
 Cryptocurrency app
 Экраны:
 - список отслеживаемых криптовалют
