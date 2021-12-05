@@ -11,9 +11,13 @@ import javax.inject.Singleton
 @Singleton
 @Component(
     modules = [QuoteDetailModule::class],
-    dependencies = [ProvidersFacade::class, ViewModelsProvider::class, NetworkProvider::class]
+    dependencies = [ProvidersFacade::class,
+//        ViewModelsProvider::class,
+        NetworkProvider::class]
 )
-interface QuoteDetailComponent : ViewModelsProvider {
+interface QuoteDetailComponent
+//    : ViewModelsProvider
+{
 
     companion object {
 
@@ -21,7 +25,7 @@ interface QuoteDetailComponent : ViewModelsProvider {
         {
             return DaggerQuoteDetailComponent
                 .builder()
-                .viewModelsProvider(CoreProvidersFactory.createViewModelBuilder())
+//                .viewModelsProvider(CoreProvidersFactory.createViewModelBuilder())
                 .providersFacade(providersFacade)
                 .networkProvider(CoreProvidersFactory.createNetworkBuilder())
                 .build()

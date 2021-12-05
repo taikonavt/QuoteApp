@@ -4,23 +4,25 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import com.example.base.BaseFragment
+import com.example.base.BaseViewModel
 import com.example.coreapi.mediator.AppWithFacade
 import com.example.coreapi.network.MoexApi
 import com.example.quote_detail.databinding.FragmentQuoteDetailBinding
 import com.example.quote_detail.di.QuoteDetailComponent
-import kotlinx.coroutines.coroutineScope
+import com.example.quote_detail.model.QuoteDetailRouteEvent
+import com.example.quote_detail.model.QuoteDetailUIEvent
+import com.example.quote_detail.model.QuoteDetailUIState
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 
-class QuoteDetailFragment : Fragment() {
+class QuoteDetailFragment : BaseFragment<QuoteDetailUIEvent,
+    QuoteDetailUIState, QuoteDetailRouteEvent, FragmentQuoteDetailBinding>() {
 
-    private lateinit var binding: FragmentQuoteDetailBinding
+    @Inject lateinit var api: MoexApi
 
-    @Inject
-    lateinit var api: MoexApi
+    @Inject override lateinit var viewModel: BaseViewModel<QuoteDetailUIEvent, QuoteDetailUIState, QuoteDetailRouteEvent, *>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,10 +39,24 @@ class QuoteDetailFragment : Fragment() {
     ): View {
         binding = FragmentQuoteDetailBinding.inflate(inflater, container, false)
         binding.button.setOnClickListener {
-            lifecycleScope.launch {
-                api.getLastQuotes(listOf("SBER"))
-            }
+//            lifecycleScope.launch {
+//                api.getLastQuotes(listOf("SBER"))
+//            }
         }
         return binding.root
+    }
+
+    override fun setViewBinding(inflater: LayoutInflater, container: ViewGroup?, attachToRoot: Boolean): FragmentQuoteDetailBinding =
+        FragmentQuoteDetailBinding.inflate(inflater)
+
+    override fun onFirstShow() {
+        super.onFirstShow()
+        viewModel.postEvent(QuoteDetailUIEvent.Init)
+    }
+
+    override fun handleUiData(data: QuoteDetailUIState) {
+        data.value?.let {
+            binding.tv.text = it
+        }
     }
 }

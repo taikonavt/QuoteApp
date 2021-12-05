@@ -6,7 +6,7 @@ import retrofit2.http.Query
 
 interface MoexApi {
 
-    @GET("iss/engines/stock/markets/shares/boards/tqbr/securities.json?securities=SBER,MVID")
+    @GET("iss/engines/stock/markets/shares/boards/tqbr/securities.json")
     suspend fun getLastQuotes(
         @Query("securities") tickers: List<String>,
     ): QuoteResponse

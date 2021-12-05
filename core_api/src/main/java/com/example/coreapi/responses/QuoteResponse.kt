@@ -20,7 +20,7 @@ class MarketData(
     val data: List<List<Any>>
 )
 
-enum class SecurityColumn() {
+enum class SecurityColumn {
     SECID,
     BOARDID,
     SHORTNAME,
@@ -51,7 +51,7 @@ enum class SecurityColumn() {
     SETTLEDATE
 }
 
-enum class MarketdataColumn() {
+enum class MarketdataColumn {
     SECID,
     BOARDID,
     BID,
